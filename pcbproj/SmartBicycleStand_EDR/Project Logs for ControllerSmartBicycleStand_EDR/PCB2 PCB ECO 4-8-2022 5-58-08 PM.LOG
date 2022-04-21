@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=NetIC2_25 Pin=IC4-3
+Removed Pin From Net: NetName=NetIC2_26 Pin=IC4-5
+Removed Pin From Net: NetName=NetIC2_24 Pin=IC4-10
+Removed Pin From Net: NetName=NetIC2_23 Pin=IC4-12
+Added Pin To Net: NetName=NetIC2_23 Pin=IC4-3
+Added Pin To Net: NetName=NetIC2_24 Pin=IC4-5
+Added Pin To Net: NetName=NetIC2_26 Pin=IC4-10
+Added Pin To Net: NetName=NetIC2_25 Pin=IC4-12
+Added Room: Name=Controller

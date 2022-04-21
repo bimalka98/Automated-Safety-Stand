@@ -1,0 +1,17 @@
+Removed Pin From Net: NetName=NetIC3_10 Pin=Stepper_In-1
+Removed Pin From Net: NetName=NetIC3_11 Pin=Stepper_In-2
+Removed Pin From Net: NetName=NetIC3_12 Pin=Stepper_In-3
+Removed Pin From Net: NetName=NetIC3_13 Pin=Stepper_In-4
+Removed Pin From Net: NetName=NetMotorPower_1 Pin=Stepper_In-5
+Removed Member From Class: ClassName=Controller Member=Stepper_In
+Added Component: Designator=Stepper_In?(HDR1X5H)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetMotorPower_1 Pin=Stepper_In?-1
+Added Pin To Net: NetName=NetIC3_10 Pin=Stepper_In?-2
+Added Pin To Net: NetName=NetIC3_11 Pin=Stepper_In?-3
+Added Pin To Net: NetName=NetIC3_12 Pin=Stepper_In?-4
+Added Pin To Net: NetName=NetIC3_13 Pin=Stepper_In?-5
+Added Member To Class: ClassName=Controller Member=Component Stepper_In? Header 5H
+Added Room: Name=Controller

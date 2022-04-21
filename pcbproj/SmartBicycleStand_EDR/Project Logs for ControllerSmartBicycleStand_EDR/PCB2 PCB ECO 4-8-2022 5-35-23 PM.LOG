@@ -1,0 +1,7 @@
+Added Pin To Net: NetName=NetIC2_25 Pin=IC2-25
+Added Pin To Net: NetName=NetIC2_25 Pin=IC4-3
+Added Net: Name=NetIC2_25
+Added Pin To Net: NetName=NetIC2_26 Pin=IC2-26
+Added Pin To Net: NetName=NetIC2_26 Pin=IC4-5
+Added Net: Name=NetIC2_26
+Added Room: Name=Controller

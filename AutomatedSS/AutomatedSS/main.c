@@ -1,8 +1,8 @@
 /*
  * AutomatedSS.c
  *
- * Created: 4/17/2022 8:38:56 PM
- * Author : @github.com/ bimalka98; 
+ * Created			: 4/17/2022 8:38:56 PM
+ * Author @github	: bimalka98; ViduraErandika; 
  * 
  * Pin Configuration:
  * PC6 - reset
@@ -13,7 +13,7 @@
  * PD5 - red led(while stand is lifting down and lifting up, this led should on)
  * PD6 - green led (if the stand is in right position, this led is on)
  * PC5 - SCL
- * PC4 - SDL - I2C communication with gyrascope
+ * PC4 - SDL - I2C communication with gyroscope
  * PC3,PC2,PC1,PC0 - stepper outs
  */ 
 
@@ -22,7 +22,14 @@
 
 int main(void)
 {
-    /* Replace with your application code */
+    /* Data Direction Definitions: input low, output high */
+
+    DDRD |= (1 << PIND5) | (1 << PIND6); // make pins related to LEDs as output pins
+    DDRC |= (1 << PINC3) | (1 << PINC2) | (1 << PINC1) | (1 << PINC0); // make pins related to stepper as output pins
+
+
+
+
     while (1) 
     {
     }

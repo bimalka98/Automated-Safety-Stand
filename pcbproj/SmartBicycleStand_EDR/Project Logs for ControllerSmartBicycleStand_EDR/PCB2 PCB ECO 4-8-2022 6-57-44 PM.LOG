@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=LED_R Pin=Indicators-1
+Removed Pin From Net: NetName=GND Pin=Indicators-2
+Removed Pin From Net: NetName=LED_G Pin=Indicators-3
+Removed Pin From Net: NetName=GND Pin=Indicators-4
+Removed Pin From Net: NetName=Buzzer Pin=Indicators-5
+Removed Pin From Net: NetName=GND Pin=Indicators-6
+Added Pin To Net: NetName=GND Pin=Indicators-1
+Added Pin To Net: NetName=LED_R Pin=Indicators-2
+Added Pin To Net: NetName=GND Pin=Indicators-3
+Added Pin To Net: NetName=LED_G Pin=Indicators-4
+Added Pin To Net: NetName=GND Pin=Indicators-5
+Added Pin To Net: NetName=Buzzer Pin=Indicators-6
+Added Room: Name=Controller
