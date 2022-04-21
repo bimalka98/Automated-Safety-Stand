@@ -27,7 +27,7 @@ int main(void)
     DDRD |= (1 << PIND5) | (1 << PIND6); // make pins related to LEDs as output pins
     DDRC |= (1 << PINC3) | (1 << PINC2) | (1 << PINC1) | (1 << PINC0); // make pins related to stepper as output pins
 
-
+	
 
 
     while (1) 
