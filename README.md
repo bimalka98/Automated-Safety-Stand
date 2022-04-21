@@ -1,6 +1,8 @@
 # Automated-Safety-Stand
 Automated safety stand for motor bikes
 
+PAT: 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
+
 ## Target Microcontroller Unit: ATmega328P
 * **Datasheet :** https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf
 * **Product Description Page :** https://www.microchip.com/en-us/product/ATmega328P
