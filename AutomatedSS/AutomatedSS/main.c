@@ -17,7 +17,28 @@
  * PC3,PC2,PC1,PC0 - stepper outs
  */ 
 
+ // define the clock frequency to be 8MHz
+ #ifndef F_CPU
+    #define F_CPU 8000000UL
+#endif
+
+// Include required built-in header files
 #include <avr/io.h>
+#include <util/delay.h>
+#include <avr/interrupt.h>
+
+// Include user defined header files
+#include "I2Cdev/I2Cdev.h"
+#include "MPU6050/MPU6050.h"
+
+// define the macros
+
+
+// define the global variables
+bool KeyONDetected = false; // if key is on, this variable will be made true
+float RestingAngleOfBike = 0; // the angle of the bie when it is parked
+float CurrentAngleOfBike = 0; // angle of the bike
+
 
 
 int main(void)
@@ -32,6 +53,14 @@ int main(void)
 
     while (1) 
     {
+        // read the PIND0 and store its value to the variable KeyONDetected
+        KeyONDetected = (PIND & (1 << PIND0)); // if key is on, this variable will be made true   
+
+        // get the angle of the bike from the gyroscope
+        CurrentAngleOfBike = getCurrentAngleOfBike();
+
+        
+
     }
 }
 
