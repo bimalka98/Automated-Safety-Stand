@@ -28,8 +28,7 @@
 #include <avr/interrupt.h>
 
 // Include user defined header files
-#include "I2Cdev/I2Cdev.h"
-#include "MPU6050/MPU6050.h"
+
 
 // define the macros
 
@@ -49,6 +48,7 @@ int main(void)
     DDRC |= (1 << PINC3) | (1 << PINC2) | (1 << PINC1) | (1 << PINC0); // make pins related to stepper as output pins
 
 	
+
 
 
     while (1) 
