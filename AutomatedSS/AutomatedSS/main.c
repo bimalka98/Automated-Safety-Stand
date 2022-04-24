@@ -21,6 +21,9 @@
 #ifndef F_CPU
 #define F_CPU 4000000UL
 #endif
+#ifndef BAUD
+#define BAUD 9600
+#endif
 
 
 // Include required built-in header files
@@ -44,31 +47,34 @@
 
 // define the global variables
 bool KeyONDetected = false; // if key is on, this variable will be made true
+bool CurrentAngleOfBikeZero = false;	//if angle of the bike 0, variable be made true
 float CurrentAngleOfBike = 0; // angle of the bike
 
 
 
 int main(void)
 {
-    /* Data Direction Definitions: input low, output high */
-
-    DDRD |= (1 << PIND5) | (1 << PIND6); // make pins related to LEDs as output pins
-    DDRC |= (1 << PINC3) | (1 << PINC2) | (1 << PINC1) | (1 << PINC0); // make pins related to stepper as output pins
+   
+	initialize();
 	
-
-	
-
-
 
     while (1) 
     {
         // read the PIND0 and store its value to the variable KeyONDetected
-        KeyONDetected = (PIND & (1 << PIND0)); // if key is on, this variable will be made true   
+        KeyONDetected = (PIND & (1 << PIND0)); // if key is on, this variable will be made true 
+		  
+		if (KeyONDetected & CurrentAngleOfBikeZero)
+			stepperUp(KeyONDetected,CurrentAngleOfBikeZero);
+		
+		  
+		
 
         // get the angle of the bike from the gyroscope
         //CurrentAngleOfBike = getCurrentAngleOfBike();
 
-        
+        if ((PIND&0x08) == 0) //check whether lift down switch is ground
+			stepperDown();
+
 
     }
 }

@@ -7,6 +7,9 @@
 
 #include <avr/io.h>
 #include <util/delay.h>
+#include <inttypes.h>
+#include <stdint.h>
+#include <stdbool.h>
 
 #define  OUTPUT_RED_LED (5) //PD5 >> red led(while stand is lifting down and lifting up, this led should on)
 #define  OUTPUT_GREEN_LED (6)  //PD6 >> green led (if the stand is in right position, this led is on)
@@ -20,7 +23,6 @@
 #define STEP_D (0)
 
 
-unsigned int delay = 500;
 unsigned int count = 0;
 
 int initialize(){
@@ -29,12 +31,15 @@ int initialize(){
 	DDRC |= (1<<STEP_A)|(1<<STEP_B)|(1<<STEP_C)|(1<<STEP_D);	//steppers as an output port
 	
 	PORTD |= (1<<LIFT_DOWN_PIN);  //activate pull up
+	
+	return 0;
 }
 
-int stepperUp( ){
+int stepperUp(bool IRDetect){
 	
-	
-	while((PIND&0x02)==1){
+	int delay = 500;
+	while(!IRDetect){
+		
 		count += 1;
 		PORTD |= (1<<OUTPUT_RED_LED); //switch on the RED LED
 		
@@ -77,8 +82,8 @@ int stepperUp( ){
 
 int stepperDown(){
 	
-	if ((PIND&0x08) == 0) //check whether lift down switch is ground
-	{
+
+		int delay = 500;
 		while (count>=0){
 			count -= 1;
 			PORTD |= (1<<OUTPUT_RED_LED); //switch on the RED LED
@@ -116,7 +121,6 @@ int stepperDown(){
 			_delay_ms(delay);
 			
 		}
-	}
 	
 	PORTD &= ~(1<<OUTPUT_RED_LED);		//switch off the RED LED
 	return 0;

@@ -1,0 +1,516 @@
+
+AutomatedSS.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000000  00800100  00800100  00000356  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .text         000002e2  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  2 .bss          00000004  00800100  00800100  00000356  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000356  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 00000040  00000000  00000000  00000388  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000050  00000000  00000000  000003c8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000be0  00000000  00000000  00000418  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000773  00000000  00000000  00000ff8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000575  00000000  00000000  0000176b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000068  00000000  00000000  00001ce0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000042f  00000000  00000000  00001d48  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000459  00000000  00000000  00002177  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000030  00000000  00000000  000025d0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	21 e0       	ldi	r18, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	a4 30       	cpi	r26, 0x04	; 4
+  80:	b2 07       	cpc	r27, r18
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 48 00 	call	0x90	; 0x90 <main>
+  88:	0c 94 6f 01 	jmp	0x2de	; 0x2de <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <main>:
+
+
+int main(void)
+{
+   
+	initialize();
+  90:	0e 94 5d 00 	call	0xba	; 0xba <initialize>
+	
+
+    while (1) 
+    {
+        // read the PIND0 and store its value to the variable KeyONDetected
+        KeyONDetected = (PIND & (1 << PIND0)); // if key is on, this variable will be made true 
+  94:	89 b1       	in	r24, 0x09	; 9
+  96:	81 70       	andi	r24, 0x01	; 1
+  98:	80 93 01 01 	sts	0x0101, r24	; 0x800101 <KeyONDetected>
+		  
+		if (KeyONDetected & CurrentAngleOfBikeZero)
+  9c:	60 91 00 01 	lds	r22, 0x0100	; 0x800100 <__DATA_REGION_ORIGIN__>
+  a0:	88 23       	and	r24, r24
+  a2:	31 f0       	breq	.+12     	; 0xb0 <main+0x20>
+  a4:	66 23       	and	r22, r22
+  a6:	21 f0       	breq	.+8      	; 0xb0 <main+0x20>
+			stepperUp(KeyONDetected,CurrentAngleOfBikeZero);
+  a8:	70 e0       	ldi	r23, 0x00	; 0
+  aa:	90 e0       	ldi	r25, 0x00	; 0
+  ac:	0e 94 6b 00 	call	0xd6	; 0xd6 <stepperUp>
+		
+
+        // get the angle of the bike from the gyroscope
+        //CurrentAngleOfBike = getCurrentAngleOfBike();
+
+        if ((PIND&0x08) == 0) //check whether lift down switch is ground
+  b0:	4b 99       	sbic	0x09, 3	; 9
+  b2:	f0 cf       	rjmp	.-32     	; 0x94 <main+0x4>
+			stepperDown();
+  b4:	0e 94 f2 00 	call	0x1e4	; 0x1e4 <stepperDown>
+  b8:	ed cf       	rjmp	.-38     	; 0x94 <main+0x4>
+
+000000ba <initialize>:
+
+
+unsigned int count = 0;
+
+int initialize(){
+	DDRD |= (1<<OUTPUT_RED_LED)|(1<<OUTPUT_GREEN_LED); // PD5 and PD6 as outputs				
+  ba:	8a b1       	in	r24, 0x0a	; 10
+  bc:	80 66       	ori	r24, 0x60	; 96
+  be:	8a b9       	out	0x0a, r24	; 10
+	DDRD &= ~(1<<KEY_SWITCH)|~(1<<IR_INPUT)|~(1<<LIFT_DOWN_PIN);  // PD0 PD2 PD4 as inputs  				
+  c0:	8a b1       	in	r24, 0x0a	; 10
+  c2:	8a b9       	out	0x0a, r24	; 10
+	DDRC |= (1<<STEP_A)|(1<<STEP_B)|(1<<STEP_C)|(1<<STEP_D);	//steppers as an output port
+  c4:	87 b1       	in	r24, 0x07	; 7
+  c6:	8f 60       	ori	r24, 0x0F	; 15
+  c8:	87 b9       	out	0x07, r24	; 7
+	
+	PORTD |= (1<<LIFT_DOWN_PIN);  //activate pull up
+  ca:	8b b1       	in	r24, 0x0b	; 11
+  cc:	80 61       	ori	r24, 0x10	; 16
+  ce:	8b b9       	out	0x0b, r24	; 11
+	
+	return 0;
+}
+  d0:	80 e0       	ldi	r24, 0x00	; 0
+  d2:	90 e0       	ldi	r25, 0x00	; 0
+  d4:	08 95       	ret
+
+000000d6 <stepperUp>:
+
+int stepperUp(bool IRDetect){
+	
+	int delay = 500;
+	while(!IRDetect){
+  d6:	7d c0       	rjmp	.+250    	; 0x1d2 <stepperUp+0xfc>
+		
+		count += 1;
+  d8:	20 91 02 01 	lds	r18, 0x0102	; 0x800102 <count>
+  dc:	30 91 03 01 	lds	r19, 0x0103	; 0x800103 <count+0x1>
+  e0:	2f 5f       	subi	r18, 0xFF	; 255
+  e2:	3f 4f       	sbci	r19, 0xFF	; 255
+  e4:	30 93 03 01 	sts	0x0103, r19	; 0x800103 <count+0x1>
+  e8:	20 93 02 01 	sts	0x0102, r18	; 0x800102 <count>
+		PORTD |= (1<<OUTPUT_RED_LED); //switch on the RED LED
+  ec:	9b b1       	in	r25, 0x0b	; 11
+  ee:	90 62       	ori	r25, 0x20	; 32
+  f0:	9b b9       	out	0x0b, r25	; 11
+		
+		PORTC |= (1<<STEP_A)|(1<<STEP_D); //1001
+  f2:	98 b1       	in	r25, 0x08	; 8
+  f4:	99 60       	ori	r25, 0x09	; 9
+  f6:	98 b9       	out	0x08, r25	; 8
+		PORTC &= ~(1<<STEP_B)|~(1<<STEP_C);
+  f8:	98 b1       	in	r25, 0x08	; 8
+  fa:	98 b9       	out	0x08, r25	; 8
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  fc:	2f e9       	ldi	r18, 0x9F	; 159
+  fe:	36 e8       	ldi	r19, 0x86	; 134
+ 100:	91 e0       	ldi	r25, 0x01	; 1
+ 102:	21 50       	subi	r18, 0x01	; 1
+ 104:	30 40       	sbci	r19, 0x00	; 0
+ 106:	90 40       	sbci	r25, 0x00	; 0
+ 108:	e1 f7       	brne	.-8      	; 0x102 <stepperUp+0x2c>
+ 10a:	00 c0       	rjmp	.+0      	; 0x10c <stepperUp+0x36>
+ 10c:	00 00       	nop
+		_delay_ms(delay);
+		
+		PORTC |= (1<<STEP_A);	//1000
+ 10e:	98 b1       	in	r25, 0x08	; 8
+ 110:	98 60       	ori	r25, 0x08	; 8
+ 112:	98 b9       	out	0x08, r25	; 8
+		PORTC &= ~(1<<STEP_B)|~(1<<STEP_C)|~(1<<STEP_D);
+ 114:	98 b1       	in	r25, 0x08	; 8
+ 116:	98 b9       	out	0x08, r25	; 8
+ 118:	2f e9       	ldi	r18, 0x9F	; 159
+ 11a:	36 e8       	ldi	r19, 0x86	; 134
+ 11c:	91 e0       	ldi	r25, 0x01	; 1
+ 11e:	21 50       	subi	r18, 0x01	; 1
+ 120:	30 40       	sbci	r19, 0x00	; 0
+ 122:	90 40       	sbci	r25, 0x00	; 0
+ 124:	e1 f7       	brne	.-8      	; 0x11e <stepperUp+0x48>
+ 126:	00 c0       	rjmp	.+0      	; 0x128 <stepperUp+0x52>
+ 128:	00 00       	nop
+		_delay_ms(delay);
+		
+		PORTC |= (1<<STEP_A)|(1<<STEP_B); //1100
+ 12a:	98 b1       	in	r25, 0x08	; 8
+ 12c:	9c 60       	ori	r25, 0x0C	; 12
+ 12e:	98 b9       	out	0x08, r25	; 8
+		PORTC &= ~(1<<STEP_C)|~(1<<STEP_D);
+ 130:	98 b1       	in	r25, 0x08	; 8
+ 132:	98 b9       	out	0x08, r25	; 8
+ 134:	2f e9       	ldi	r18, 0x9F	; 159
+ 136:	36 e8       	ldi	r19, 0x86	; 134
+ 138:	91 e0       	ldi	r25, 0x01	; 1
+ 13a:	21 50       	subi	r18, 0x01	; 1
+ 13c:	30 40       	sbci	r19, 0x00	; 0
+ 13e:	90 40       	sbci	r25, 0x00	; 0
+ 140:	e1 f7       	brne	.-8      	; 0x13a <stepperUp+0x64>
+ 142:	00 c0       	rjmp	.+0      	; 0x144 <stepperUp+0x6e>
+ 144:	00 00       	nop
+		_delay_ms(delay);
+		
+		PORTC |= (1<<STEP_B);	//0100
+ 146:	98 b1       	in	r25, 0x08	; 8
+ 148:	94 60       	ori	r25, 0x04	; 4
+ 14a:	98 b9       	out	0x08, r25	; 8
+		PORTC &= ~(1<<STEP_A)|~(1<<STEP_C)|~(1<<STEP_D);
+ 14c:	98 b1       	in	r25, 0x08	; 8
+ 14e:	98 b9       	out	0x08, r25	; 8
+ 150:	2f e9       	ldi	r18, 0x9F	; 159
+ 152:	36 e8       	ldi	r19, 0x86	; 134
+ 154:	91 e0       	ldi	r25, 0x01	; 1
+ 156:	21 50       	subi	r18, 0x01	; 1
+ 158:	30 40       	sbci	r19, 0x00	; 0
+ 15a:	90 40       	sbci	r25, 0x00	; 0
+ 15c:	e1 f7       	brne	.-8      	; 0x156 <stepperUp+0x80>
+ 15e:	00 c0       	rjmp	.+0      	; 0x160 <stepperUp+0x8a>
+ 160:	00 00       	nop
+		_delay_ms(delay);
+		
+		PORTC |= (1<<STEP_B)|(1<<STEP_C); //0110
+ 162:	98 b1       	in	r25, 0x08	; 8
+ 164:	96 60       	ori	r25, 0x06	; 6
+ 166:	98 b9       	out	0x08, r25	; 8
+		PORTC &= ~(1<<STEP_A)|~(1<<STEP_D);
+ 168:	98 b1       	in	r25, 0x08	; 8
+ 16a:	98 b9       	out	0x08, r25	; 8
+ 16c:	2f e9       	ldi	r18, 0x9F	; 159
+ 16e:	36 e8       	ldi	r19, 0x86	; 134
+ 170:	91 e0       	ldi	r25, 0x01	; 1
+ 172:	21 50       	subi	r18, 0x01	; 1
+ 174:	30 40       	sbci	r19, 0x00	; 0
+ 176:	90 40       	sbci	r25, 0x00	; 0
+ 178:	e1 f7       	brne	.-8      	; 0x172 <stepperUp+0x9c>
+ 17a:	00 c0       	rjmp	.+0      	; 0x17c <stepperUp+0xa6>
+ 17c:	00 00       	nop
+		_delay_ms(delay);
+		
+		PORTC |= (1<<STEP_C);	//0010
+ 17e:	98 b1       	in	r25, 0x08	; 8
+ 180:	92 60       	ori	r25, 0x02	; 2
+ 182:	98 b9       	out	0x08, r25	; 8
+		PORTC &= ~(1<<STEP_A)|~(1<<STEP_B)|~(1<<STEP_D);
+ 184:	98 b1       	in	r25, 0x08	; 8
+ 186:	98 b9       	out	0x08, r25	; 8
+ 188:	2f e9       	ldi	r18, 0x9F	; 159
+ 18a:	36 e8       	ldi	r19, 0x86	; 134
+ 18c:	91 e0       	ldi	r25, 0x01	; 1
+ 18e:	21 50       	subi	r18, 0x01	; 1
+ 190:	30 40       	sbci	r19, 0x00	; 0
+ 192:	90 40       	sbci	r25, 0x00	; 0
+ 194:	e1 f7       	brne	.-8      	; 0x18e <stepperUp+0xb8>
+ 196:	00 c0       	rjmp	.+0      	; 0x198 <stepperUp+0xc2>
+ 198:	00 00       	nop
+		_delay_ms(delay);
+		
+		PORTC |= (1<<STEP_C)|(1<<STEP_D); //0011
+ 19a:	98 b1       	in	r25, 0x08	; 8
+ 19c:	93 60       	ori	r25, 0x03	; 3
+ 19e:	98 b9       	out	0x08, r25	; 8
+		PORTC &= ~(1<<STEP_A)|~(1<<STEP_B);
+ 1a0:	98 b1       	in	r25, 0x08	; 8
+ 1a2:	98 b9       	out	0x08, r25	; 8
+ 1a4:	2f e9       	ldi	r18, 0x9F	; 159
+ 1a6:	36 e8       	ldi	r19, 0x86	; 134
+ 1a8:	91 e0       	ldi	r25, 0x01	; 1
+ 1aa:	21 50       	subi	r18, 0x01	; 1
+ 1ac:	30 40       	sbci	r19, 0x00	; 0
+ 1ae:	90 40       	sbci	r25, 0x00	; 0
+ 1b0:	e1 f7       	brne	.-8      	; 0x1aa <stepperUp+0xd4>
+ 1b2:	00 c0       	rjmp	.+0      	; 0x1b4 <stepperUp+0xde>
+ 1b4:	00 00       	nop
+		_delay_ms(delay);
+		
+		PORTC |= (1<<STEP_D);	//0001
+ 1b6:	98 b1       	in	r25, 0x08	; 8
+ 1b8:	91 60       	ori	r25, 0x01	; 1
+ 1ba:	98 b9       	out	0x08, r25	; 8
+		PORTC &= ~(1<<STEP_A)|~(1<<STEP_B)|~(1<<STEP_C);
+ 1bc:	98 b1       	in	r25, 0x08	; 8
+ 1be:	98 b9       	out	0x08, r25	; 8
+ 1c0:	2f e9       	ldi	r18, 0x9F	; 159
+ 1c2:	36 e8       	ldi	r19, 0x86	; 134
+ 1c4:	91 e0       	ldi	r25, 0x01	; 1
+ 1c6:	21 50       	subi	r18, 0x01	; 1
+ 1c8:	30 40       	sbci	r19, 0x00	; 0
+ 1ca:	90 40       	sbci	r25, 0x00	; 0
+ 1cc:	e1 f7       	brne	.-8      	; 0x1c6 <stepperUp+0xf0>
+ 1ce:	00 c0       	rjmp	.+0      	; 0x1d0 <stepperUp+0xfa>
+ 1d0:	00 00       	nop
+}
+
+int stepperUp(bool IRDetect){
+	
+	int delay = 500;
+	while(!IRDetect){
+ 1d2:	88 23       	and	r24, r24
+ 1d4:	09 f4       	brne	.+2      	; 0x1d8 <stepperUp+0x102>
+ 1d6:	80 cf       	rjmp	.-256    	; 0xd8 <stepperUp+0x2>
+		PORTC |= (1<<STEP_D);	//0001
+		PORTC &= ~(1<<STEP_A)|~(1<<STEP_B)|~(1<<STEP_C);
+		_delay_ms(delay);
+	}
+	
+	PORTD &= ~(1<<OUTPUT_RED_LED);		//switch off the RED LED
+ 1d8:	8b b1       	in	r24, 0x0b	; 11
+ 1da:	8f 7d       	andi	r24, 0xDF	; 223
+ 1dc:	8b b9       	out	0x0b, r24	; 11
+	return 0;
+}
+ 1de:	80 e0       	ldi	r24, 0x00	; 0
+ 1e0:	90 e0       	ldi	r25, 0x00	; 0
+ 1e2:	08 95       	ret
+
+000001e4 <stepperDown>:
+int stepperDown(){
+	
+
+		int delay = 500;
+		while (count>=0){
+			count -= 1;
+ 1e4:	80 91 02 01 	lds	r24, 0x0102	; 0x800102 <count>
+ 1e8:	90 91 03 01 	lds	r25, 0x0103	; 0x800103 <count+0x1>
+ 1ec:	01 97       	sbiw	r24, 0x01	; 1
+ 1ee:	90 93 03 01 	sts	0x0103, r25	; 0x800103 <count+0x1>
+ 1f2:	80 93 02 01 	sts	0x0102, r24	; 0x800102 <count>
+			PORTD |= (1<<OUTPUT_RED_LED); //switch on the RED LED
+ 1f6:	8b b1       	in	r24, 0x0b	; 11
+ 1f8:	80 62       	ori	r24, 0x20	; 32
+ 1fa:	8b b9       	out	0x0b, r24	; 11
+			
+			PORTC |= (1<<STEP_D);	//0001
+ 1fc:	88 b1       	in	r24, 0x08	; 8
+ 1fe:	81 60       	ori	r24, 0x01	; 1
+ 200:	88 b9       	out	0x08, r24	; 8
+			PORTC &= ~(1<<STEP_A)|~(1<<STEP_B)|~(1<<STEP_C);
+ 202:	88 b1       	in	r24, 0x08	; 8
+ 204:	88 b9       	out	0x08, r24	; 8
+ 206:	2f e9       	ldi	r18, 0x9F	; 159
+ 208:	86 e8       	ldi	r24, 0x86	; 134
+ 20a:	91 e0       	ldi	r25, 0x01	; 1
+ 20c:	21 50       	subi	r18, 0x01	; 1
+ 20e:	80 40       	sbci	r24, 0x00	; 0
+ 210:	90 40       	sbci	r25, 0x00	; 0
+ 212:	e1 f7       	brne	.-8      	; 0x20c <stepperDown+0x28>
+ 214:	00 c0       	rjmp	.+0      	; 0x216 <stepperDown+0x32>
+ 216:	00 00       	nop
+			_delay_ms(delay);
+			
+			PORTC |= (1<<STEP_C)|(1<<STEP_D); //0011
+ 218:	88 b1       	in	r24, 0x08	; 8
+ 21a:	83 60       	ori	r24, 0x03	; 3
+ 21c:	88 b9       	out	0x08, r24	; 8
+			PORTC &= ~(1<<STEP_A)|~(1<<STEP_B);
+ 21e:	88 b1       	in	r24, 0x08	; 8
+ 220:	88 b9       	out	0x08, r24	; 8
+ 222:	2f e9       	ldi	r18, 0x9F	; 159
+ 224:	86 e8       	ldi	r24, 0x86	; 134
+ 226:	91 e0       	ldi	r25, 0x01	; 1
+ 228:	21 50       	subi	r18, 0x01	; 1
+ 22a:	80 40       	sbci	r24, 0x00	; 0
+ 22c:	90 40       	sbci	r25, 0x00	; 0
+ 22e:	e1 f7       	brne	.-8      	; 0x228 <stepperDown+0x44>
+ 230:	00 c0       	rjmp	.+0      	; 0x232 <stepperDown+0x4e>
+ 232:	00 00       	nop
+			_delay_ms(delay);
+			
+			PORTC |= (1<<STEP_C);	//0010
+ 234:	88 b1       	in	r24, 0x08	; 8
+ 236:	82 60       	ori	r24, 0x02	; 2
+ 238:	88 b9       	out	0x08, r24	; 8
+			PORTC &= ~(1<<STEP_A)|~(1<<STEP_B)|~(1<<STEP_D);
+ 23a:	88 b1       	in	r24, 0x08	; 8
+ 23c:	88 b9       	out	0x08, r24	; 8
+ 23e:	2f e9       	ldi	r18, 0x9F	; 159
+ 240:	86 e8       	ldi	r24, 0x86	; 134
+ 242:	91 e0       	ldi	r25, 0x01	; 1
+ 244:	21 50       	subi	r18, 0x01	; 1
+ 246:	80 40       	sbci	r24, 0x00	; 0
+ 248:	90 40       	sbci	r25, 0x00	; 0
+ 24a:	e1 f7       	brne	.-8      	; 0x244 <stepperDown+0x60>
+ 24c:	00 c0       	rjmp	.+0      	; 0x24e <stepperDown+0x6a>
+ 24e:	00 00       	nop
+			_delay_ms(delay);
+			
+			PORTC |= (1<<STEP_B)|(1<<STEP_C); //0110
+ 250:	88 b1       	in	r24, 0x08	; 8
+ 252:	86 60       	ori	r24, 0x06	; 6
+ 254:	88 b9       	out	0x08, r24	; 8
+			PORTC &= ~(1<<STEP_A)|~(1<<STEP_D);
+ 256:	88 b1       	in	r24, 0x08	; 8
+ 258:	88 b9       	out	0x08, r24	; 8
+ 25a:	2f e9       	ldi	r18, 0x9F	; 159
+ 25c:	86 e8       	ldi	r24, 0x86	; 134
+ 25e:	91 e0       	ldi	r25, 0x01	; 1
+ 260:	21 50       	subi	r18, 0x01	; 1
+ 262:	80 40       	sbci	r24, 0x00	; 0
+ 264:	90 40       	sbci	r25, 0x00	; 0
+ 266:	e1 f7       	brne	.-8      	; 0x260 <stepperDown+0x7c>
+ 268:	00 c0       	rjmp	.+0      	; 0x26a <stepperDown+0x86>
+ 26a:	00 00       	nop
+			_delay_ms(delay);
+			
+			PORTC |= (1<<STEP_B);	//0100
+ 26c:	88 b1       	in	r24, 0x08	; 8
+ 26e:	84 60       	ori	r24, 0x04	; 4
+ 270:	88 b9       	out	0x08, r24	; 8
+			PORTC &= ~(1<<STEP_A)|~(1<<STEP_C)|~(1<<STEP_D);
+ 272:	88 b1       	in	r24, 0x08	; 8
+ 274:	88 b9       	out	0x08, r24	; 8
+ 276:	2f e9       	ldi	r18, 0x9F	; 159
+ 278:	86 e8       	ldi	r24, 0x86	; 134
+ 27a:	91 e0       	ldi	r25, 0x01	; 1
+ 27c:	21 50       	subi	r18, 0x01	; 1
+ 27e:	80 40       	sbci	r24, 0x00	; 0
+ 280:	90 40       	sbci	r25, 0x00	; 0
+ 282:	e1 f7       	brne	.-8      	; 0x27c <stepperDown+0x98>
+ 284:	00 c0       	rjmp	.+0      	; 0x286 <stepperDown+0xa2>
+ 286:	00 00       	nop
+			_delay_ms(delay);
+			
+			PORTC |= (1<<STEP_A)|(1<<STEP_B); //1100
+ 288:	88 b1       	in	r24, 0x08	; 8
+ 28a:	8c 60       	ori	r24, 0x0C	; 12
+ 28c:	88 b9       	out	0x08, r24	; 8
+			PORTC &= ~(1<<STEP_C)|~(1<<STEP_D);
+ 28e:	88 b1       	in	r24, 0x08	; 8
+ 290:	88 b9       	out	0x08, r24	; 8
+ 292:	2f e9       	ldi	r18, 0x9F	; 159
+ 294:	86 e8       	ldi	r24, 0x86	; 134
+ 296:	91 e0       	ldi	r25, 0x01	; 1
+ 298:	21 50       	subi	r18, 0x01	; 1
+ 29a:	80 40       	sbci	r24, 0x00	; 0
+ 29c:	90 40       	sbci	r25, 0x00	; 0
+ 29e:	e1 f7       	brne	.-8      	; 0x298 <stepperDown+0xb4>
+ 2a0:	00 c0       	rjmp	.+0      	; 0x2a2 <stepperDown+0xbe>
+ 2a2:	00 00       	nop
+			_delay_ms(delay);
+			
+			PORTC |= (1<<STEP_A);	//1000
+ 2a4:	88 b1       	in	r24, 0x08	; 8
+ 2a6:	88 60       	ori	r24, 0x08	; 8
+ 2a8:	88 b9       	out	0x08, r24	; 8
+			PORTC &= ~(1<<STEP_B)|~(1<<STEP_C)|~(1<<STEP_D);
+ 2aa:	88 b1       	in	r24, 0x08	; 8
+ 2ac:	88 b9       	out	0x08, r24	; 8
+ 2ae:	2f e9       	ldi	r18, 0x9F	; 159
+ 2b0:	86 e8       	ldi	r24, 0x86	; 134
+ 2b2:	91 e0       	ldi	r25, 0x01	; 1
+ 2b4:	21 50       	subi	r18, 0x01	; 1
+ 2b6:	80 40       	sbci	r24, 0x00	; 0
+ 2b8:	90 40       	sbci	r25, 0x00	; 0
+ 2ba:	e1 f7       	brne	.-8      	; 0x2b4 <stepperDown+0xd0>
+ 2bc:	00 c0       	rjmp	.+0      	; 0x2be <stepperDown+0xda>
+ 2be:	00 00       	nop
+			_delay_ms(delay);
+			
+			PORTC |= (1<<STEP_A)|(1<<STEP_D); //1001
+ 2c0:	88 b1       	in	r24, 0x08	; 8
+ 2c2:	89 60       	ori	r24, 0x09	; 9
+ 2c4:	88 b9       	out	0x08, r24	; 8
+			PORTC &= ~(1<<STEP_B)|~(1<<STEP_C);
+ 2c6:	88 b1       	in	r24, 0x08	; 8
+ 2c8:	88 b9       	out	0x08, r24	; 8
+ 2ca:	2f e9       	ldi	r18, 0x9F	; 159
+ 2cc:	86 e8       	ldi	r24, 0x86	; 134
+ 2ce:	91 e0       	ldi	r25, 0x01	; 1
+ 2d0:	21 50       	subi	r18, 0x01	; 1
+ 2d2:	80 40       	sbci	r24, 0x00	; 0
+ 2d4:	90 40       	sbci	r25, 0x00	; 0
+ 2d6:	e1 f7       	brne	.-8      	; 0x2d0 <stepperDown+0xec>
+ 2d8:	00 c0       	rjmp	.+0      	; 0x2da <stepperDown+0xf6>
+ 2da:	00 00       	nop
+ 2dc:	83 cf       	rjmp	.-250    	; 0x1e4 <stepperDown>
+
+000002de <_exit>:
+ 2de:	f8 94       	cli
+
+000002e0 <__stop_program>:
+ 2e0:	ff cf       	rjmp	.-2      	; 0x2e0 <__stop_program>
