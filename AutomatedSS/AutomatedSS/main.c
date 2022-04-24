@@ -24,12 +24,8 @@
 
 
 // Include required built-in header files
-
 #include <avr/io.h>
-
-#define __DELAY_BACKWARD_COMPATIBLE__ // https://stackoverflow.com/a/55231712/15939357
 #include <util/delay.h>
-
 #include <util/setbaud.h>
 #include <avr/interrupt.h>
 #include <math.h>
@@ -59,8 +55,7 @@ int main(void)
     DDRD |= (1 << PIND5) | (1 << PIND6); // make pins related to LEDs as output pins
     DDRC |= (1 << PINC3) | (1 << PINC2) | (1 << PINC1) | (1 << PINC0); // make pins related to stepper as output pins
 	
-	// i2c initialization
-	i2c_init();
+
 	
 
 

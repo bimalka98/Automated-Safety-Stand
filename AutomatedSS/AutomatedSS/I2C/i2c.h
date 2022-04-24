@@ -1,5 +1,5 @@
-#ifndef _I2CMASTER_H
-#define _I2CMASTER_H   1
+#ifndef _I2C_H
+#define _I2C_H   1
 /************************************************************************* 
 * Title:    C include file for the I2C master interface 
 *           (i2cmaster.S or twimaster.c)

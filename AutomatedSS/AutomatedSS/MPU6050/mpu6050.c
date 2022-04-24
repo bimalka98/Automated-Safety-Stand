@@ -1,6 +1,8 @@
-
+// Include required built-in header files
 #include <inttypes.h>
 #include <stdint.h>
+
+// Include user defined header files
 #include "../I2C/i2c.h"
 #include "mpu6050_reg.h"
 #include "mpu6050.h"

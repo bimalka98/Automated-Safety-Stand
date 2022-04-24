@@ -2,8 +2,8 @@
 	useful functions to manipulate mpu6050
 */
 
-#ifndef MPU6050
-#define MPU6050
+#ifndef MPU6050_H_
+#define MPU6050_H_
 
 
 //start mpu6050 over I2C
