@@ -17,10 +17,13 @@
  * PC3,PC2,PC1,PC0 - stepper outs
  */ 
 
- // define the clock frequency to be 8MHz
+ // define the clock frequency to be 4MHz
+ // also declared in i2c.c remember to change there too!
 #ifndef F_CPU
 #define F_CPU 4000000UL
 #endif
+
+// define the baud rate to be 9600 bps (for the UART)
 #ifndef BAUD
 #define BAUD 9600
 #endif
@@ -67,8 +70,6 @@ int main(void)
 			stepperUp(KeyONDetected,CurrentAngleOfBikeZero);
 		
 		  
-		
-
         // get the angle of the bike from the gyroscope
         //CurrentAngleOfBike = getCurrentAngleOfBike();
 

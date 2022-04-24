@@ -1,10 +1,3 @@
-// Include required built-in header files
-#include <inttypes.h>
-#include <stdint.h>
-
-// Include user defined header files
-#include "../I2C/i2c.h"
-#include "mpu6050_reg.h"
 #include "mpu6050.h"
 
 
@@ -140,7 +133,12 @@ void mpu6050_read_accel_Z(uint8_t * buff){
 }
 
 
-
+/*
+source : https://mjwhite8119.github.io/Robots/mpu6050
+To represent a change in orientation you first specify the Yaw angle, which is a rotation around the z-axis. 
+Then add the Pitch, which is a rotation around the y-axis. 
+And finally a Roll around the x-axis.
+*/
 
 
 

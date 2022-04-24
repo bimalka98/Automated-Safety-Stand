@@ -10,3 +10,5 @@ MPU6050\mpu6050.c
 
 stepperMotor\stepper.c
 
+Utilities\utilities.c
+

@@ -5,6 +5,24 @@
 #ifndef MPU6050_H_
 #define MPU6050_H_
 
+// Include required built-in header files
+#include <inttypes.h>
+#include <stdint.h>
+
+// user defined libraries
+#include "../I2C/i2c.h"
+#include "mpu6050_reg.h"
+
+// variables
+uint8_t ret; 
+int16_t accel_buff[3], gyro_buff[3];
+double accelX, accelY, accelZ;
+double gyroX, gyroY, gyroZ;
+double biasX, biasY;
+double phi_accel, theta_accel;
+double phi_innov, theta_innov;
+double phi_est, theta_est;
+double phi_prev, theta_prev;
 
 //start mpu6050 over I2C
 //return 0x68(device address with AD0 low), 
@@ -37,5 +55,6 @@ void mpu6050_read_accel_Y(uint8_t * buff);
 void mpu6050_read_accel_Z(uint8_t * buff);
 
 
+// newly added functions by bimalka98
 
 #endif
