@@ -30,15 +30,15 @@
     <EraseKey />
     <AsfFrameworkConfig>
       <framework-data>
-  <options />
-  <configurations />
-  <files />
-  <documentation help="" />
-  <offline-documentation help="" />
-  <dependencies>
-    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.39.0" />
-  </dependencies>
-</framework-data>
+        <options />
+        <configurations />
+        <files />
+        <documentation help="" />
+        <offline-documentation help="" />
+        <dependencies>
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.42.0" />
+        </dependencies>
+      </framework-data>
     </AsfFrameworkConfig>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -120,7 +120,22 @@
     </ToolchainSettings>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="I2C\i2c.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="I2C\i2c.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MPU6050\mpu6050.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MPU6050\mpu6050.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MPU6050\mpu6050_reg.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="stepperMotor\stepper.c">
@@ -131,6 +146,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="I2C\" />
+    <Folder Include="MPU6050\" />
     <Folder Include="stepperMotor" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />

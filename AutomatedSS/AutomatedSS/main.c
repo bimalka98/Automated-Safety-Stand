@@ -18,24 +18,36 @@
  */ 
 
  // define the clock frequency to be 8MHz
- #ifndef F_CPU
-    #define F_CPU 8000000UL
+#ifndef F_CPU
+#define F_CPU 4000000UL
 #endif
 
+
 // Include required built-in header files
+
 #include <avr/io.h>
+
+#define __DELAY_BACKWARD_COMPATIBLE__ // https://stackoverflow.com/a/55231712/15939357
 #include <util/delay.h>
+
+#include <util/setbaud.h>
 #include <avr/interrupt.h>
+#include <math.h>
+#include <inttypes.h>
+#include <stdint.h>
+#include <stdbool.h>
 
 // Include user defined header files
-
+#include "MPU6050/mpu6050.h"
+#include "MPU6050/mpu6050_reg.h"
+#include "I2C/i2c.h"
+#include "stepperMotor/stepper.h"
 
 // define the macros
-
+#define RESTING_ANGLE_OF_BIKE 30.0 // angle in degrees of the bike when it is resting (parked)
 
 // define the global variables
 bool KeyONDetected = false; // if key is on, this variable will be made true
-float RestingAngleOfBike = 0; // the angle of the bie when it is parked
 float CurrentAngleOfBike = 0; // angle of the bike
 
 
@@ -46,7 +58,9 @@ int main(void)
 
     DDRD |= (1 << PIND5) | (1 << PIND6); // make pins related to LEDs as output pins
     DDRC |= (1 << PINC3) | (1 << PINC2) | (1 << PINC1) | (1 << PINC0); // make pins related to stepper as output pins
-
+	
+	// i2c initialization
+	i2c_init();
 	
 
 
@@ -57,7 +71,7 @@ int main(void)
         KeyONDetected = (PIND & (1 << PIND0)); // if key is on, this variable will be made true   
 
         // get the angle of the bike from the gyroscope
-        CurrentAngleOfBike = getCurrentAngleOfBike();
+        //CurrentAngleOfBike = getCurrentAngleOfBike();
 
         
 

@@ -28,3 +28,4 @@ Automated safety stand for motor bikes
 1. [ATmega Interface](https://www.electronicwings.com/avr-atmega/interfaces)
 2. [MPU6050 (Gyroscope + Accelerometer + Temperature) interface with AVR ATmega16](https://www.electronicwings.com/avr-atmega/mpu6050-gyroscope-accelerometer-temperature-interface-with-atmega16)
 3. [The MPU6050 Explained](https://mjwhite8119.github.io/Robots/mpu6050)
+4. [Add multiple files and folders to existing project in Atmel Studio6](https://microchipsupport.force.com/s/article/Add-multiple-files-and-folders-to-existing-project-in-Atmel-Studio6)
