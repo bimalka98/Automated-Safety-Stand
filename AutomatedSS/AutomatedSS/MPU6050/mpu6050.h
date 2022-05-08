@@ -1,7 +1,3 @@
-/*
-	useful functions to manipulate mpu6050
-*/
-
 #ifndef MPU6050_H_
 #define MPU6050_H_
 
@@ -31,7 +27,7 @@ uint8_t mpu6050_start(void);
 
 
 //configure important settings in mpu6050
-//subject to change app(ilcation) by app
+//subject to change app(lication) by app
 void mpu6050_init(void);
 
 
@@ -56,5 +52,6 @@ void mpu6050_read_accel_Z(uint8_t * buff);
 
 
 // newly added functions by bimalka98
+float getCurrentAngleOfBike();
 
 #endif

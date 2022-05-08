@@ -29,3 +29,14 @@ Automated safety stand for motor bikes
 2. [MPU6050 (Gyroscope + Accelerometer + Temperature) interface with AVR ATmega16](https://www.electronicwings.com/avr-atmega/mpu6050-gyroscope-accelerometer-temperature-interface-with-atmega16)
 3. [The MPU6050 Explained](https://mjwhite8119.github.io/Robots/mpu6050)
 4. [Add multiple files and folders to existing project in Atmel Studio6](https://microchipsupport.force.com/s/article/Add-multiple-files-and-folders-to-existing-project-in-Atmel-Studio6)
+
+
+# Arduino Project
+Due to lack of complete code reference for MPU6050 to use with ATmega328P.
+
+1. [Build a Digital Level with MPU-6050 and Arduino](https://dronebotworkshop.com/mpu-6050-level/)
+2. [Arduino Uno to ATmega328 - Shrinking your Arduino Projects](https://youtu.be/Sww1mek5rHU)
+3. [Build an Electronic Level with MPU-6050 and Arduino](https://youtu.be/XCyRXMvVSCw)
+4. [MPU-6050 6-axis accelerometer/gyroscope - I2Cdevlib documatation](https://www.i2cdevlib.com/devices/mpu6050#source)
+5. [jrowberg/i2cdevlib](https://github.com/jrowberg/i2cdevlib)
+6. [MPU6050 Class Reference](https://www.i2cdevlib.com/docs/html/class_m_p_u6050.html)

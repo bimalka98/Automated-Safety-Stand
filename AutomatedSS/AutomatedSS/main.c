@@ -65,17 +65,18 @@ int main(void)
     {
         // read the PIND0 and store its value to the variable KeyONDetected
         KeyONDetected = (PIND & (1 << PIND0)); // if key is on, this variable will be made true 
-		  
-		if (KeyONDetected & CurrentAngleOfBikeZero)
-			stepperUp(KeyONDetected,CurrentAngleOfBikeZero);
-		
-		  
+
         // get the angle of the bike from the gyroscope
-        //CurrentAngleOfBike = getCurrentAngleOfBike();
+        CurrentAngleOfBike = getCurrentAngleOfBike();
 
-        if ((PIND&0x08) == 0) //check whether lift down switch is ground
+		if (KeyONDetected & CurrentAngleOfBikeZero){
+
+			stepperUp(KeyONDetected,CurrentAngleOfBikeZero);
+        }
+
+        if ((PIND&0x08) == 0){ //check whether lift down switch is ground
 			stepperDown();
-
+        }
 
     }
 }

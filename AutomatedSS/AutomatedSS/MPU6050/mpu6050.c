@@ -22,7 +22,6 @@ uint8_t mpu6050_start(void){
 }
 
 
-
 //configure important settings in mpu6050
 //subject to change app(ilcation) by app
 void mpu6050_init(void){
@@ -36,8 +35,6 @@ void mpu6050_init(void){
 	i2c_write_byte(MPU6050_ADDRESS, MPU6050_RA_SIGNAL_PATH_RESET, 0x00); //don't reset signal path
 
 }
-
-
 
 // read gyro X, Y, Z all at once, high- & low-8-bits combined
 // return int16_t (signed) in buff
@@ -140,5 +137,8 @@ Then add the Pitch, which is a rotation around the y-axis.
 And finally a Roll around the x-axis.
 */
 
+float getCurrentAngleOfBike(){
+	
+}
 
 
