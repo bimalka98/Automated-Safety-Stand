@@ -31,8 +31,13 @@ Automated safety stand for motor bikes
 4. [Add multiple files and folders to existing project in Atmel Studio6](https://microchipsupport.force.com/s/article/Add-multiple-files-and-folders-to-existing-project-in-Atmel-Studio6)
 
 
-# Arduino Project
-Due to lack of complete code reference for MPU6050 to use with ATmega328P.
+# Arduino Project (Chosen)
+*Due to lack of complete code reference for MPU6050 to use with ATmega328P*
+
+<p align="center">
+<img src="figures/Atmega168PinMap2.png"  align="center" width=500>
+</p>
+
 
 1. [Build a Digital Level with MPU-6050 and Arduino](https://dronebotworkshop.com/mpu-6050-level/)
 2. [Arduino Uno to ATmega328 - Shrinking your Arduino Projects](https://youtu.be/Sww1mek5rHU)
