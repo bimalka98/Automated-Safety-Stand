@@ -26,12 +26,31 @@
 // including I2Cdev and MPU6050 libraries
 #include "I2Cdev.h"
 #include "MPU6050_6Axis_MotionApps20.h" //"MPU6050.h" is included in this header file
+#include <Stepper.h>
 
 // Arduino Wire library is required if I2Cdev I2CDEV_ARDUINO_WIRE implementation is used in I2Cdev.h
 #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
 #include "Wire.h"
 #endif
 
+#define stepA A0
+#define stepB A1
+#define stepC A2
+#define stepD A3
+
+#define powerSwitch 0
+#define irInput 2
+
+const int stepsPerRevolution = 200;  // change this to fit the number of steps per revolution
+// for your motor
+
+
+// initialize the stepper library on pins 8 through 11:
+Stepper myStepper(stepsPerRevolution, stepA, stepB, stepC,stepD);
+
+bool stepperDownFlag = false;
+
+int stepCount = 0;  // number of steps the motor has taken
 /* class default I2C address is 0x68
   specific I2C addresses may be passed as a parameter here
   AD0 low = 0x68 (default for SparkFun breakout and InvenSense evaluation board)
@@ -85,6 +104,12 @@ float getCurrentangleOfBike();  // function to get the current angle of the bike
 
 void setup() { // setup function runs once at startupS
 
+  // set the speed at 60 rpm:
+  myStepper.setSpeed(60);
+
+  pinMode (irInput, INPUT); // IR sensor pin INPUT
+  pinMode (powerSwitch, INPUT); //  bike power pin INPUT
+
   // join I2C bus (I2Cdev library doesn't do this automatically)
 #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
   Wire.begin();
@@ -107,11 +132,34 @@ void loop() { // loop function runs repeatedly
   // get current angle of the bike
   float _currentangle = getCurrentangleOfBike();
 
+  if ( _currentangle == 0.0 && digitalRead(powerSwitch) == HIGH){
+    while (digitalRead(irInput) != HIGH){
+      turnClockwise();
+    }
+  }
+
+  if (stepperDownFlag){
+    turnAntiClockwise();
+  }
+
 }
 
 // *****************************************************************************
 /* **************      USER DEFINED FUNCTIONS DEFINITIONS **************      */
 // *****************************************************************************
+void turnClockwise(){
+  myStepper.step(stepsPerRevolution);
+  delay(50);
+  stepCount++;
+}
+
+void turnAntiClockwise(){
+  while(stepCount >0){
+    myStepper.step(-stepsPerRevolution);
+    delay(50);
+    stepCount--;
+  }
+}
 
 // fucntion to initialize the MPU6050
 void initializeMPU6050() {
