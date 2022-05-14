@@ -89,7 +89,8 @@ float ypr[3];                 // [yaw, pitch, roll]   yaw/pitch/roll container a
 
 /* program specific variables */
 float setAngleOfBike = 0; // set angle of bike: when it is in rest position
-
+int buttonState = 0;         // current state of the button
+int lastButtonState = 0;     // previous state of the button
 
 // *****************************************************************************
 /* **************      USER DEFINED FUNCTIONS DECLARATION **************      */
@@ -138,9 +139,16 @@ void loop() { // loop function runs repeatedly
     }
   }
 
-  if (stepperDownFlag){
-    turnAntiClockwise();
+  buttonState = digitalRead(powerSwitch);
+
+  if (buttonState != lastButtonState) {
+    if (buttonState == LOW && lastButtonState == HIGH) {
+      turnAntiClockwise();
+    }
+    lastButtonState = buttonState;
   }
+
+ 
 
 }
 
