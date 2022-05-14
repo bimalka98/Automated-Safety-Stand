@@ -88,7 +88,7 @@ float euler[3];               // [psi, theta, phi]    Euler angle container
 float ypr[3];                 // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
 
 /* program specific variables */
-float setAngleOfBike = 0; // set angle of bike: when it is in rest position
+float setAngleOfBike = 45; // set angle of bike: when it is in rest position
 int buttonState = 0;         // current state of the button
 int lastButtonState = 0;     // previous state of the button
 
@@ -133,7 +133,9 @@ void loop() { // loop function runs repeatedly
   // get current angle of the bike
   float _currentangle = getCurrentangleOfBike();
 
-  if ( _currentangle == 0.0 && digitalRead(powerSwitch) == HIGH){
+
+  if ( _currentangle < setAngleOfBike && digitalRead(powerSwitch) == HIGH){
+    // should check whether an IR sensor is actually needed.
     while (digitalRead(irInput) != HIGH){
       turnClockwise();
     }
@@ -147,9 +149,6 @@ void loop() { // loop function runs repeatedly
     }
     lastButtonState = buttonState;
   }
-
- 
-
 }
 
 // *****************************************************************************
