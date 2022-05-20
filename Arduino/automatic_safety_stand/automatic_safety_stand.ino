@@ -40,6 +40,10 @@
 
 #define powerSwitch 0
 #define irInput 2
+#define redLED 5
+#define greenLED 6
+#define buzzer 7
+
 
 const int stepsPerRevolution = 200;  // change this to fit the number of steps per revolution
 // for your motor
@@ -110,6 +114,11 @@ void setup() { // setup function runs once at startupS
 
   pinMode (irInput, INPUT); // IR sensor pin INPUT
   pinMode (powerSwitch, INPUT); //  bike power pin INPUT
+  pinMode (redLED , OUTPUT);
+  pinMode (greenLED , OUTPUT);
+  pinMode (buzzer , OUTPUT);
+
+  
 
   // join I2C bus (I2Cdev library doesn't do this automatically)
 #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
@@ -149,22 +158,36 @@ void loop() { // loop function runs repeatedly
     }
     lastButtonState = buttonState;
   }
+
+  antiTheft();
 }
 
 // *****************************************************************************
 /* **************      USER DEFINED FUNCTIONS DEFINITIONS **************      */
 // *****************************************************************************
 void turnClockwise(){
-  myStepper.step(stepsPerRevolution);
+  myStepper.step(1);
+  digitalWrite(redLED , HIGH);
+  delay(50);
+  digitalWrite(redLED , LOW);
   delay(50);
   stepCount++;
 }
 
 void turnAntiClockwise(){
   while(stepCount >0){
-    myStepper.step(-stepsPerRevolution);
+    myStepper.step(-1);
+    digitalWrite(redLED , HIGH);
+    delay(50);
+    digitalWrite(redLED , LOW);
     delay(50);
     stepCount--;
+  }
+}
+
+void antiTheft(){
+  if (digitalRead(irInput) == HIGH && digitalRead(powerSwitch) == LOW){
+    digitalWrite(buzzer , HIGH);
   }
 }
 
