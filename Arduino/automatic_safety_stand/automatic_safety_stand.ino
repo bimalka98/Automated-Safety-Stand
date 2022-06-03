@@ -38,7 +38,7 @@
 #define stepC A2
 #define stepD A3
 
-#define powerSwitch 0
+#define powerSwitch 8
 #define irInput 2
 #define redLED 5
 #define greenLED 6
@@ -110,16 +110,16 @@ float getCurrentangleOfBike();  // function to get the current angle of the bike
 void setup() { // setup function runs once at startupS
 
   // set the speed at 60 rpm:
-  myStepper.setSpeed(60);
+  myStepper.setSpeed(100);
 
   pinMode (irInput, INPUT); // IR sensor pin INPUT
   pinMode (powerSwitch, INPUT); //  bike power pin INPUT
   pinMode (redLED , OUTPUT);
   pinMode (greenLED , OUTPUT);
   pinMode (buzzer , OUTPUT);
-
+  pinMode(LED_BUILTIN, OUTPUT);
   
-
+  Serial.begin(115200);
   // join I2C bus (I2Cdev library doesn't do this automatically)
 #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
   Wire.begin();
@@ -141,45 +141,46 @@ void loop() { // loop function runs repeatedly
 
   // get current angle of the bike
   float _currentangle = getCurrentangleOfBike();
+  Serial.println(_currentangle);
+  delay(100);
 
+//  if ( digitalRead(powerSwitch) == LOW){
+//    // should check whether an IR sensor is actually needed.
+//    while (digitalRead(irInput) != LOW){
+//      turnClockwise();
+//    }
+//  }
+//
+//  buttonState = digitalRead(powerSwitch);
+//
+//  if (buttonState != lastButtonState) {
+//    if (buttonState == HIGH && lastButtonState == LOW) {
+//      turnAntiClockwise();
+//    }
+//    lastButtonState = buttonState;
+//  }
 
-  if ( _currentangle < setAngleOfBike && digitalRead(powerSwitch) == HIGH){
-    // should check whether an IR sensor is actually needed.
-    while (digitalRead(irInput) != HIGH){
-      turnClockwise();
-    }
-  }
-
-  buttonState = digitalRead(powerSwitch);
-
-  if (buttonState != lastButtonState) {
-    if (buttonState == LOW && lastButtonState == HIGH) {
-      turnAntiClockwise();
-    }
-    lastButtonState = buttonState;
-  }
-
-  antiTheft();
+//  antiTheft();
 }
 
 // *****************************************************************************
 /* **************      USER DEFINED FUNCTIONS DEFINITIONS **************      */
 // *****************************************************************************
 void turnClockwise(){
-  myStepper.step(1);
-  digitalWrite(redLED , HIGH);
+  myStepper.step(10);
+  digitalWrite(LED_BUILTIN , HIGH);
   delay(50);
-  digitalWrite(redLED , LOW);
+  digitalWrite(LED_BUILTIN , LOW);
   delay(50);
   stepCount++;
 }
 
 void turnAntiClockwise(){
   while(stepCount >0){
-    myStepper.step(-1);
-    digitalWrite(redLED , HIGH);
+    myStepper.step(-10);
+    digitalWrite(LED_BUILTIN , HIGH);
     delay(50);
-    digitalWrite(redLED , LOW);
+    digitalWrite(LED_BUILTIN , LOW);
     delay(50);
     stepCount--;
   }
