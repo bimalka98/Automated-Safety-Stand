@@ -50,7 +50,7 @@ const int stepsPerRevolution = 200;  // change this to fit the number of steps p
 
 
 // initialize the stepper library on pins 8 through 11:
-Stepper myStepper(stepsPerRevolution, stepA, stepB, stepC,stepD);
+Stepper myStepper(stepsPerRevolution, stepA, stepB, stepC, stepD);
 
 bool stepperDownFlag = false;
 
@@ -92,7 +92,7 @@ float euler[3];               // [psi, theta, phi]    Euler angle container
 float ypr[3];                 // [yaw, pitch, roll]   yaw/pitch/roll container and gravity vector
 
 /* program specific variables */
-float setAngleOfBike = 45; // set angle of bike: when it is in rest position
+float setAngleOfBike = 10; // set angle of bike: when it is in rest position
 int buttonState = 0;         // current state of the button
 int lastButtonState = 0;     // previous state of the button
 
@@ -118,7 +118,7 @@ void setup() { // setup function runs once at startupS
   pinMode (greenLED , OUTPUT);
   pinMode (buzzer , OUTPUT);
   pinMode(LED_BUILTIN, OUTPUT);
-  
+
   Serial.begin(115200);
   // join I2C bus (I2Cdev library doesn't do this automatically)
 #if I2CDEV_IMPLEMENTATION == I2CDEV_ARDUINO_WIRE
@@ -144,29 +144,29 @@ void loop() { // loop function runs repeatedly
   Serial.println(_currentangle);
   delay(100);
 
-//  if ( digitalRead(powerSwitch) == LOW){
-//    // should check whether an IR sensor is actually needed.
-//    while (digitalRead(irInput) != LOW){
-//      turnClockwise();
-//    }
-//  }
-//
-//  buttonState = digitalRead(powerSwitch);
-//
-//  if (buttonState != lastButtonState) {
-//    if (buttonState == HIGH && lastButtonState == LOW) {
-//      turnAntiClockwise();
-//    }
-//    lastButtonState = buttonState;
-//  }
+  if ( digitalRead(powerSwitch) == HIGH && _currentangle > setAngleOfBike ) {
+    // should check whether an IR sensor is actually needed.
+    while (digitalRead(irInput) != LOW) {
+      turnClockwise();
+    }
+  }
 
-//  antiTheft();
+    buttonState = digitalRead(powerSwitch);
+  
+    if (buttonState != lastButtonState) {
+      if (buttonState == LOW && lastButtonState == HIGH) {
+        turnAntiClockwise();
+      }
+      lastButtonState = buttonState;
+    }
+
+    antiTheft();
 }
 
 // *****************************************************************************
 /* **************      USER DEFINED FUNCTIONS DEFINITIONS **************      */
 // *****************************************************************************
-void turnClockwise(){
+void turnClockwise() {
   myStepper.step(10);
   digitalWrite(LED_BUILTIN , HIGH);
   delay(50);
@@ -175,8 +175,8 @@ void turnClockwise(){
   stepCount++;
 }
 
-void turnAntiClockwise(){
-  while(stepCount >0){
+void turnAntiClockwise() {
+  while (stepCount > 0) {
     myStepper.step(-10);
     digitalWrite(LED_BUILTIN , HIGH);
     delay(50);
@@ -186,8 +186,8 @@ void turnAntiClockwise(){
   }
 }
 
-void antiTheft(){
-  if (digitalRead(irInput) == HIGH && digitalRead(powerSwitch) == LOW){
+void antiTheft() {
+  if (digitalRead(irInput) == LOW && digitalRead(powerSwitch) == LOW) {
     digitalWrite(buzzer , HIGH);
   }
 }
@@ -263,6 +263,12 @@ float getCurrentangleOfBike() {
     _pitch = ypr[1] * 180 / M_PI; // Pitch angle: rotation around the y-axis
     _roll = ypr[2] * 180 / M_PI; // Roll angle: rotation around the x-axis
   }
+
+  // round _pitch to nearest integer
+  _pitch = round(_pitch);
+
+  // get the absolute value of the pitch angle
+  _pitch = abs(_pitch);
 
   // return the angle: rotation around y-axis
   return _pitch;
