@@ -1,3 +1,4 @@
+make.exe --dry-run --always-make --keep-going --print-directory
 make.exe: Entering directory `e:/Automated-Safety-Stand'
 make.exe: Leaving directory `e:/Automated-Safety-Stand'
  

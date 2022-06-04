@@ -141,32 +141,47 @@ void loop() { // loop function runs repeatedly
 
   // get current angle of the bike
   float _currentangle = getCurrentangleOfBike();
-  Serial.println(_currentangle);
-  delay(100);
 
+  // check whether the power switch is on and the angle of the bike meets the requirement
   if ( digitalRead(powerSwitch) == HIGH && _currentangle > setAngleOfBike ) {
-    // should check whether an IR sensor is actually needed.
+
+    // until the stand comes to the correct position
     while (digitalRead(irInput) != LOW) {
-      turnClockwise();
+
+      // rotate the stepper
+      stepperUP();
+
     }
   }
 
-    buttonState = digitalRead(powerSwitch);
-  
-    if (buttonState != lastButtonState) {
-      if (buttonState == LOW && lastButtonState == HIGH) {
-        turnAntiClockwise();
-      }
-      lastButtonState = buttonState;
+  // to lower the bike stand when the key is OFF
+  buttonState = digitalRead(powerSwitch);
+
+  // check whether there is a change in key state ON/OFF
+  if (buttonState != lastButtonState) {
+
+    // if bike is stopped button state becomes low. key OFF
+    // lastButtonState is high when it is moving. key ON
+    if (buttonState == LOW && lastButtonState == HIGH) {
+
+      // lower the bike stand
+      stepperDown();
     }
 
-    antiTheft();
+    // update the key state
+    lastButtonState = buttonState;
+
+  }
+
+  // check whether someone tries to steal the bike and inform it using a buffer.
+  antiTheft();
+
 }
 
 // *****************************************************************************
 /* **************      USER DEFINED FUNCTIONS DEFINITIONS **************      */
 // *****************************************************************************
-void turnClockwise() {
+void stepperUP() {
   myStepper.step(10);
   digitalWrite(LED_BUILTIN , HIGH);
   delay(50);
@@ -175,7 +190,7 @@ void turnClockwise() {
   stepCount++;
 }
 
-void turnAntiClockwise() {
+void stepperDown() {
   while (stepCount > 0) {
     myStepper.step(-10);
     digitalWrite(LED_BUILTIN , HIGH);
